@@ -4,7 +4,7 @@
 
 namespace MutexModule
 {
-     class Mutex
+    class Mutex
     {
     public:
         Mutex()
@@ -25,14 +25,18 @@ namespace MutexModule
         {
             pthread_mutex_destroy(&_mutex);
         }
-
+        pthread_mutex_t *Get()
+        {
+            return &_mutex;
+        }
     private:
         pthread_mutex_t _mutex;
     };
+
     class LockGuard
     {
     public:
-        LockGuard(Mutex &mutex) : _mutex(mutex)
+        LockGuard(Mutex &mutex):_mutex(mutex)
         {
             _mutex.Lock();
         }
@@ -40,7 +44,6 @@ namespace MutexModule
         {
             _mutex.Unlock();
         }
-
     private:
         Mutex &_mutex;
     };
