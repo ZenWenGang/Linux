@@ -100,6 +100,10 @@ namespace ThreadModlue
             {
             }
         }
+        pthread_t Id()
+        {
+            return _tid;
+        }
         ~Thread()
         {
         }
